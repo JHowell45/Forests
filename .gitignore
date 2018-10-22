@@ -1,2 +1,5 @@
 # Ignore egg files for packaged library:
 forests.egg-info
+
+# Ignore IDE config/setting files and directories:
+.vscode
