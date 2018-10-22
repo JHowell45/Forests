@@ -1,0 +1,2 @@
+# Ignore egg files for packaged library:
+forests.egg-info
