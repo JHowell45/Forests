@@ -11,6 +11,9 @@ name = "pypi"
 "flake8" = "*"
 mypy = "*"
 pylint = "*"
+isort = "*"
+pytest = "*"
+pytest-coverage = "*"
 
 [requires]
 python_version = "3.7"
