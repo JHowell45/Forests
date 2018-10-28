@@ -1,7 +1,7 @@
 """This file contains the classes for creating Trees.
 
 This file contains the classes for creating Trees along with their functions
-for retrieving attributes and genrating instances.
+for retrieving attributes and generating instances.
 """
 
 
@@ -49,7 +49,7 @@ class TreeNode:
         to allow for conditions to be applied to the attribute.
 
         :return: the value stored in the '_child' variable.
-        :rtype:
+        :rtype: TreeNode
         """
         return self._child
 
@@ -61,12 +61,20 @@ class TreeNode:
         to allow for conditions to be applied to the attribute.
 
         :return: the value stored in the '_parent' variable.
-        :rtype:
+        :rtype: TreeNode
         """
         return self._parent
 
     @parent.setter
     def parent(self, new_parent):
+        """Use this function to assign a parent to the current instance.
+
+        This function is used for setting a new parent 'TreeNode' to the
+        current TreeNode instance.
+
+        :param new_parent: the new parent 'TreeNode' to assign.
+        :type new_parent: TreeNode
+        """
         if isinstance(new_parent, TreeNode):
             self._parent = new_parent
         else:
