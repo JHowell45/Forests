@@ -12,7 +12,7 @@ class TreeNode:
     the tree data structure with.
     """
 
-    def __init__(self, payload=None, child=None, parent=None):
+    def __init__(self, payload=None, children=None, parent=None):
         """Use this function to initialise an instance of the TreeNode class.
 
         This function is used for initialising an instance of the 'TreeNode'
@@ -20,13 +20,13 @@ class TreeNode:
 
         :param payload: the data carried by the 'TreeNode' instance.
         :type payload:
-        :param child: a child instance of another 'TreeNode'.
-        :type child: TreeNode
+        :param children: a children instance of another 'TreeNode'.
+        :type children: TreeNode
         :param parent: a parent instance of another 'TreeNode'.
         :type parent: TreeNode
         """
         self._payload = payload
-        self._child = child
+        self._children = [] if children is None else children
         self._parent = parent
 
     @classmethod
@@ -61,28 +61,43 @@ class TreeNode:
             raise ValueError('payload must not be of type TreeNode!')
 
     @property
-    def child(self):
-        """Use this function as a getter for the '_child' attribute.
+    def children(self):
+        """Use this function as a getter for the '_children' attribute.
 
-        This function is used as a getter function for the '_child' attribute
+        This function is used as a getter function for the '_children' attribute
         to allow for conditions to be applied to the attribute.
 
-        :return: the value stored in the '_child' variable.
+        :return: the value stored in the '_children' variable.
         :rtype: TreeNode
         """
-        return self._child
+        return self._children
 
-    @child.setter
-    def child(self, new_child):
-        """Use this function to assign a child to the current instance.
+    @children.setter
+    def children(self, new_children):
+        """Use this function to assign a children to the current instance.
 
-        This function is used for setting a new child 'TreeNode' to the
+        This function is used for setting a new children 'TreeNode' to the
         current TreeNode instance.
 
-        :param new_child: the new child 'TreeNode' to assign.
-        :type new_child: TreeNode
+        :param new_children: the new children 'TreeNode' to assign.
+        :type new_children: TreeNode
         """
-        self._child = new_child
+        if isinstance(new_children, list):
+            self._children = new_children
+        else:
+            raise ValueError(
+                "value must be of type list! Value of type: '%s}'",
+                type(new_children)
+            )
+
+    def add_child(self, new_child):
+        if isinstance(new_child, TreeNode):
+            self.children.append(new_child)
+        else:
+            raise ValueError(
+                "Child must be of type 'TreeNode'! Currently of type: '%s'",
+                type(new_child)
+            )
 
     @property
     def parent(self):
@@ -110,9 +125,9 @@ class TreeNode:
             self._parent = new_parent
         else:
             raise TypeError(
-                    "New Parent Must be of type 'TreeNode', not '{}'!".format(
-                            type(new_parent)
-                    )
+                "New Parent Must be of type 'TreeNode', not '{}'!".format(
+                        type(new_parent)
+                )
             )
 
     def __repr__(self):
@@ -126,7 +141,7 @@ class TreeNode:
         """
         return (
             '<TreeNode Payload: {}, Parent: {}, Child: {}>'.format(
-                    self.payload, self.parent, self.child
+                    self.payload, self.parent, self.children
             )
         )
 
