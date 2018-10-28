@@ -4,3 +4,9 @@ forests.egg-info
 # Ignore IDE config/setting files and directories:
 .vscode
 .idea
+
+# Removing cache files:
+.mypy_cache
+
+# Ignore Pipenv lock file:
+Pipfile.lock
