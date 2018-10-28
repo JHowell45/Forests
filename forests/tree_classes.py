@@ -12,12 +12,14 @@ class TreeNode:
     the tree data structure with.
     """
 
-    def __init__(self, payload=None, children=None, parent=None):
+    def __init__(self, node_id=None, payload=None, children=None, parent=None):
         """Use this function to initialise an instance of the TreeNode class.
 
         This function is used for initialising an instance of the 'TreeNode'
         class.
 
+        :param node_id: the ID value for the current 'TreeNode' instance.
+        :type node_id: int
         :param payload: the data carried by the 'TreeNode' instance.
         :type payload:
         :param children: a children instance of another 'TreeNode'.
@@ -25,6 +27,7 @@ class TreeNode:
         :param parent: a parent instance of another 'TreeNode'.
         :type parent: TreeNode
         """
+        self.id = node_id
         self._payload = payload
         self._children = [] if children is None else children
         self._parent = parent
