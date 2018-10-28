@@ -94,8 +94,17 @@ class TreeNode:
             )
 
     def add_child(self, new_child):
+        """Use this function to add another child to the list of children.
+
+        This function is used for appending another child to the list of
+        children for the current 'TreeNode' instance.
+
+        :param new_child: the new 'TreeNode' to be added to the current
+                          instance as a child.
+        :type new_child: TreeNode
+        """
         if isinstance(new_child, TreeNode):
-            self.children.append(new_child)
+            self._children.append(new_child)
         else:
             raise ValueError(
                 "Child must be of type 'TreeNode'! Currently of type: '%s'",
@@ -129,7 +138,7 @@ class TreeNode:
         else:
             raise TypeError(
                 "New Parent Must be of type 'TreeNode', not '{}'!".format(
-                        type(new_parent)
+                    type(new_parent)
                 )
             )
 
@@ -144,7 +153,7 @@ class TreeNode:
         """
         return (
             '<TreeNode Payload: {}, Parent: {}, Child: {}>'.format(
-                    self.payload, self.parent, self.children
+                self.payload, self.parent, self.children
             )
         )
 
