@@ -3,3 +3,4 @@ forests.egg-info
 
 # Ignore IDE config/setting files and directories:
 .vscode
+.idea
