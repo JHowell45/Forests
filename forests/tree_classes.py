@@ -12,7 +12,7 @@ class TreeNode:
     the tree data structure with.
     """
 
-    def __init__(self, payload, child, parent):
+    def __init__(self, payload=None, child=None, parent=None):
         """Use this function to initialise an instance of the TreeNode class.
 
         This function is used for initialising an instance of the 'TreeNode'
@@ -29,6 +29,10 @@ class TreeNode:
         self._child = child
         self._parent = parent
 
+    @classmethod
+    def from_dict(cls, tree_node_data):
+        pass
+
     @property
     def payload(self):
         """Use this function as a getter for the '_payload' attribute.
@@ -41,7 +45,19 @@ class TreeNode:
         """
         return self._payload
 
-    @payload
+    @payload.setter
+    def payload(self, new_payload):
+        """Use this function to set a new payload for the current  instance.
+
+        This function is used for updating the payload value for the current
+        'TreeNode' instance.
+
+        :param new_payload: the new payload for the current instance.
+        :type new_payload:
+        """
+        self._payload = new_payload
+
+    @property
     def child(self):
         """Use this function as a getter for the '_child' attribute.
 
@@ -53,7 +69,19 @@ class TreeNode:
         """
         return self._child
 
-    @payload
+    @child.setter
+    def child(self, new_child):
+        """Use this function to assign a child to the current instance.
+
+        This function is used for setting a new child 'TreeNode' to the
+        current TreeNode instance.
+
+        :param new_child: the new child 'TreeNode' to assign.
+        :type new_child: TreeNode
+        """
+        self._child = new_child
+
+    @property
     def parent(self):
         """Use this function as a getter for the '_parent' attribute.
 
@@ -79,9 +107,9 @@ class TreeNode:
             self._parent = new_parent
         else:
             raise TypeError(
-                "New Parent Must be of type 'TreeNode', not '{}'!".format(
-                    type(new_parent)
-                )
+                    "New Parent Must be of type 'TreeNode', not '{}'!".format(
+                            type(new_parent)
+                    )
             )
 
 
