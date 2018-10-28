@@ -55,7 +55,10 @@ class TreeNode:
         :param new_payload: the new payload for the current instance.
         :type new_payload:
         """
-        self._payload = new_payload
+        if not isinstance(new_payload, TreeNode):
+            self._payload = new_payload
+        else:
+            raise ValueError('payload must not be of type TreeNode!')
 
     @property
     def child(self):
@@ -111,6 +114,21 @@ class TreeNode:
                             type(new_parent)
                     )
             )
+
+    def __repr__(self):
+        """Use this function to create a representation of a 'TreeNode'.
+
+        This function is used for creating a string representation of a
+        'TreeNode' instance.
+
+        :return: a string representation of the current instance.
+        :rtype: str
+        """
+        return (
+            '<TreeNode Payload: {}, Parent: {}, Child: {}>'.format(
+                    self.payload, self.parent, self.child
+            )
+        )
 
 
 class Tree:
