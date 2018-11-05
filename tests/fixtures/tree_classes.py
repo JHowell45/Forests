@@ -21,7 +21,7 @@ def test_tree_node_empty():
 
 
 @pytest.fixture()
-def test_tree_node_base(test_tree_node_payload):
+def test_tree_node_base(test_tree_node_payload, test_tree_node_id):
     """Use this fixture to create a base TreeNode instance.
 
     This fixture is used for creating an instance of the 'TreeNode' class
@@ -29,10 +29,15 @@ def test_tree_node_base(test_tree_node_payload):
 
     :param test_tree_node_payload: the test payload value.
     :type test_tree_node_payload:
+    :param test_tree_node_id: test ID value for a 'TreeNode'.
+    :type test_tree_node_id: int
     :return: the test 'TreeNode' instance with only a payload.
     :rtype: TreeNode
     """
-    return TreeNode(payload=test_tree_node_payload)
+    return TreeNode(
+            node_id=test_tree_node_id,
+            payload=test_tree_node_payload
+    )
 
 
 @pytest.fixture()
