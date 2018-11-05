@@ -7,6 +7,10 @@ forests.egg-info
 
 # Removing cache files:
 .mypy_cache
+__pycache__
 
 # Ignore Pipenv lock file:
 Pipfile.lock
+
+# Ignore testing cache files:
+.tox
