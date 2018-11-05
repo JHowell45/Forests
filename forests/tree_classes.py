@@ -57,11 +57,10 @@ class TreeNode:
 
 	@property
 	def node_id(self):
-		"""Use this function to return the ID value.
+		"""Use this function to return the ID value for the current instance.
 
 		This function is used for returning the ID for the current
-		'TreeNode'
-		instance.
+		'TreeNode' instance.
 
 		:return: the ID value for the 'TreeNode' instance.
 		:rtype: int
@@ -70,8 +69,7 @@ class TreeNode:
 
 	@node_id.setter
 	def node_id(self, new_id):
-		"""Use this function to set a new ID value for the current
-		'TreeNode'.
+		"""Use this function to set a new ID value for the instance.
 
 		This function is used for setting a new ID value for the current
 		'TreeNode' instance.
