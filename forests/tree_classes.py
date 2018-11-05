@@ -55,41 +55,41 @@ class TreeNode:
 				parent=parent_node
 		)
 
-		@property
-		def node_id(self):
-			"""Use this function to return the ID value.
+	@property
+	def node_id(self):
+		"""Use this function to return the ID value.
 
-			This function is used for returning the ID for the current
-			'TreeNode'
-			instance.
+		This function is used for returning the ID for the current
+		'TreeNode'
+		instance.
 
-			:return: the ID value for the 'TreeNode' instance.
-			:rtype: int
-			"""
-			return self._node_id
+		:return: the ID value for the 'TreeNode' instance.
+		:rtype: int
+		"""
+		return self._node_id
 
-		@node_id.setter
-		def node_id(self, new_id):
-			"""Use this function to set a new ID value for the current
-			'TreeNode'.
+	@node_id.setter
+	def node_id(self, new_id):
+		"""Use this function to set a new ID value for the current
+		'TreeNode'.
 
-			This function is used for setting a new ID value for the current
-			'TreeNode' instance.
+		This function is used for setting a new ID value for the current
+		'TreeNode' instance.
 
-			:param new_id: the new ID value.
-			:type new_id: int
-			"""
-			if isinstance(new_id, int):
-				self._node_id = new_id
-			elif isinstance(new_id, float):
-				print('WARNING: Converting float to integer!')
-				self._node_id = int(new_id)
-			else:
-				raise TypeError(
-						"New ID value for the TreeNode instance must be of "
-						"type "
-						"int and not: '%s'", type(new_id)
-				)
+		:param new_id: the new ID value.
+		:type new_id: int
+		"""
+		if isinstance(new_id, int):
+			self._node_id = new_id
+		elif isinstance(new_id, float):
+			print('WARNING: Converting float to integer!')
+			self._node_id = int(new_id)
+		else:
+			raise TypeError(
+					"New ID value for the TreeNode instance must be of "
+					"type "
+					"int and not: '%s'", type(new_id)
+			)
 
 	@property
 	def payload(self):
