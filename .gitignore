@@ -14,3 +14,7 @@ Pipfile.lock
 
 # Ignore testing cache files:
 .tox
+.coverage
+
+# Ignore docs:
+docs
