@@ -33,7 +33,7 @@ class TreeNode:
         :param parent: a parent instance of another 'TreeNode'.
         :type parent: TreeNode
         """
-        self.node_id = node_id
+        self.id = node_id
         self.payload = payload
         self.children = children
         self.parent = parent
@@ -62,7 +62,7 @@ class TreeNode:
         )
 
     @property
-    def node_id(self) -> int:
+    def id(self) -> int:
         """Use this function to return the ID value for the current instance.
 
         This function is used for returning the ID for the current
@@ -73,8 +73,8 @@ class TreeNode:
         """
         return self._node_id
 
-    @node_id.setter
-    def node_id(self, new_id: int) -> None:
+    @id.setter
+    def id(self, new_id: int) -> None:
         """Use this function to set a new ID value for the instance.
 
         This function is used for setting a new ID value for the current
