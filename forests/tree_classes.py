@@ -17,7 +17,7 @@ class TreeNode:
         self,
         node_id: int = None,
         payload: Any = None,
-        children: set = None,
+        children: list = None,
         parent: "TreeNode" = None,
     ) -> None:
         """Use this function to initialise an instance of the TreeNode class.
@@ -101,7 +101,7 @@ class TreeNode:
             raise ValueError("payload must not be of type TreeNode!")
 
     @property
-    def children(self) -> set:
+    def children(self) -> list:
         """Use this function as a getter for the '_children' attribute.
 
         This function is used as a getter function for the '_children' attribute to
@@ -113,7 +113,7 @@ class TreeNode:
         return self._children
 
     @children.setter
-    def children(self, new_children: set) -> None:
+    def children(self, new_children: list) -> None:
         """Use this function to assign a children to the current instance.
 
         This function is used for setting a new children 'TreeNode' to the  current
@@ -122,12 +122,12 @@ class TreeNode:
         :param new_children: the new children 'TreeNode' to assign.
         :type new_children: TreeNode
         """
-        if isinstance(new_children, set):
-            self._children: set = new_children
+        if isinstance(new_children, list):
+            self._children = new_children
         elif isinstance(new_children, dict):
-            self._children = {TreeNode.from_dict(child) for child in new_children}
+            self._children = [TreeNode(**child) for child in new_children]
         elif new_children is None:
-            self._children = set()
+            self._children = list()
         else:
             raise ValueError("Children passed could not be correctly parsed!")
 
@@ -177,7 +177,7 @@ class TreeNode:
         :type new_child: TreeNode
         """
         if isinstance(new_child, TreeNode):
-            self._children.add(new_child)
+            self._children.append(new_child)
         else:
             raise ValueError(
                 "Child must be of type 'TreeNode'! Currently of type: '%s'",
