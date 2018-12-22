@@ -111,6 +111,35 @@ class TestTreeNodeGetterFunctions:
             getattr(tree_node_instance, "parent") == tree_node_instance_data["parent"]
         )
 
+    def test_repr_type(self, tree_node_instance):
+        """Use this function to test the type of the __repr__ function.
+
+        This function is used for testing the type for the 'TreeNode' test instance
+        __repr__ function.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
+        assert isinstance(repr(tree_node_instance), str)
+
+    def test_repr_value(self, tree_node_instance):
+        """Use this function to test the value of the __repr__ function.
+
+        This function is used for testing the value for the 'TreeNode' test instance
+        __repr__ function.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
+        assert repr(
+            tree_node_instance
+        ) == "<TreeNode ID: {}, Payload: {}, Parent: {}, Child: {}>".format(
+            tree_node_instance.id,
+            tree_node_instance.payload,
+            tree_node_instance.parent,
+            tree_node_instance.children,
+        )
+
 
 class TestTreeNodeSetterFunctions:
     test_node_id_options = [10, 2.0]
