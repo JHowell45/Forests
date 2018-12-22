@@ -39,29 +39,6 @@ class TreeNode:
         self.children = children
         self.parent = parent
 
-    @classmethod
-    def from_dict(cls, tree_node_data: dict) -> "TreeNode":
-        """Use this function to create a 'TreeNode' instance using a dict.
-
-        This function is used for creating a 'TreeNode' instance using a python
-        dictionary.
-
-        :param tree_node_data: the 'TreeNode' data dictionary.
-        :type tree_node_data: dict
-        :return: a generated instance of a 'TreeNode'.
-        :rtype: dict
-        """
-        parent_node: TreeNode = TreeNode.from_dict(tree_node_data["parent"])
-        children: set = {
-            TreeNode.from_dict(child) for child in tree_node_data["children"]
-        }
-        return cls(
-            node_id=tree_node_data["id"],
-            payload=tree_node_data["payload"],
-            children=children,
-            parent=parent_node,
-        )
-
     @property
     def id(self) -> int:
         """Use this function to return the ID value for the current instance.
@@ -97,7 +74,7 @@ class TreeNode:
             )
 
     @property
-    def payload(self):
+    def payload(self) -> Any:
         """Use this function as a getter for the '_payload' attribute.
 
         This function is used as a getter function for the '_payload' attribute to
@@ -109,7 +86,7 @@ class TreeNode:
         return self._payload
 
     @payload.setter
-    def payload(self, new_payload) -> None:
+    def payload(self, new_payload: Any) -> None:
         """Use this function to set a new payload for the current  instance.
 
         This function is used for updating the payload value for the current
@@ -118,7 +95,7 @@ class TreeNode:
         :param new_payload: the new payload for the current instance.
         :type new_payload:
         """
-        if isinstance(new_payload, TreeNode):
+        if not isinstance(new_payload, TreeNode):
             self._payload = new_payload
         else:
             raise ValueError("payload must not be of type TreeNode!")
@@ -145,14 +122,14 @@ class TreeNode:
         :param new_children: the new children 'TreeNode' to assign.
         :type new_children: TreeNode
         """
-        if isinstance(new_children, list):
+        if isinstance(new_children, set):
             self._children: set = new_children
+        elif isinstance(new_children, dict):
+            self._children = {TreeNode.from_dict(child) for child in new_children}
         elif new_children is None:
             self._children = set()
         else:
-            raise ValueError(
-                "value must be of type list! Value of type: '%s}'", type(new_children)
-            )
+            raise ValueError("Children passed could not be correctly parsed!")
 
     def add_child(self, new_child: "TreeNode") -> None:
         """Use this function to add another child to the list of children.
@@ -196,6 +173,10 @@ class TreeNode:
         """
         if isinstance(new_parent, TreeNode):
             self._parent = new_parent
+        elif isinstance(new_parent, dict):
+            self._parent = TreeNode.from_dict(new_parent)
+        elif new_parent is None:
+            self._parent = None
         else:
             raise TypeError(
                 "New Parent Must be of type 'TreeNode', not '{}'!".format(
