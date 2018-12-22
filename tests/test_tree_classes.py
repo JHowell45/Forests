@@ -341,21 +341,61 @@ class TestTreeNodeErrors:
     """
 
     def test_set_id_raises_error(self, tree_node_instance):
+        """Use this function to check an error is successfully raised.
+
+        This function is used for testing the function raises the correct error code
+        when passed an incorrect value.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         with pytest.raises(TypeError):
             tree_node_instance.id = "hello world"
 
     def test_set_payload_raises_error(self, tree_node_instance):
+        """Use this function to check an error is successfully raised.
+
+        This function is used for testing the function raises the correct error code
+        when passed an incorrect value.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         with pytest.raises(TypeError):
             tree_node_instance.payload = TreeNode(1, 1, None, None)
 
     def test_set_children_raises_error(self, tree_node_instance):
+        """Use this function to check an error is successfully raised.
+
+        This function is used for testing the function raises the correct error code
+        when passed an incorrect value.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         with pytest.raises(TypeError):
             tree_node_instance.children = TreeNode(1, 1, None, None)
 
     def test_set_parent_raises_error(self, tree_node_instance):
+        """Use this function to check an error is successfully raised.
+
+        This function is used for testing the function raises the correct error code
+        when passed an incorrect value.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         with pytest.raises(TypeError):
             tree_node_instance.parent = "Not a TreeNode"
 
     def test_add_child_raise_error(self, tree_node_instance):
+        """Use this function to check an error is successfully raised.
+
+        This function is used for testing the function raises the correct error code
+        when passed an incorrect value.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         with pytest.raises(TypeError):
             tree_node_instance.add_child(1)
