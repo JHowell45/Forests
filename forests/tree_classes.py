@@ -184,6 +184,24 @@ class TreeNode:
                 type(new_child),
             )
 
+    def __eq__(self, comparison: "TreeNode") -> bool:
+        """Use this function to compare the current instance against another.
+
+        This function is used to override the magic function to correctly compare the
+        current 'TreeNode' instance against another to check they are the same.
+
+        :param comparison: the other 'TreeNode' instance to compare.
+        :type comparison: TreeNode
+        :return: whether the current instance is equal to the comparison instance.
+        :rtype: bool
+        """
+        return (
+            self.id == comparison.id
+            and self.payload == comparison.payload
+            and self.children == comparison.children
+            and self.parent == comparison.parent
+        )
+
     def __repr__(self) -> str:
         """Use this function to create a representation of a 'TreeNode'.
 
