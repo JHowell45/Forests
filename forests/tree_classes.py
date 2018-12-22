@@ -108,7 +108,7 @@ class TreeNode:
         allow for conditions to be applied to the attribute.
 
         :return: the value stored in the '_children' variable.
-        :rtype: TreeNode
+        :rtype: list
         """
         return self._children
 
@@ -120,7 +120,7 @@ class TreeNode:
         'TreeNode' instance.
 
         :param new_children: the new children 'TreeNode' to assign.
-        :type new_children: TreeNode
+        :type new_children: list
         """
         if isinstance(new_children, list):
             self._children = new_children
