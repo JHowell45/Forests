@@ -49,7 +49,7 @@ class TreeNode:
         :return: the ID value for the 'TreeNode' instance.
         :rtype: int
         """
-        return self._node_id
+        return self._id
 
     @id.setter
     def id(self, new_id: int) -> None:
@@ -62,10 +62,10 @@ class TreeNode:
         :type new_id: int
         """
         if isinstance(new_id, int):
-            self._node_id = new_id
+            self._id = new_id
         elif isinstance(new_id, float):
             print("WARNING: Converting float to integer!")
-            self._node_id = int(new_id)
+            self._id = int(new_id)
         else:
             raise TypeError(
                 "New ID value for the TreeNode instance must be of type "
