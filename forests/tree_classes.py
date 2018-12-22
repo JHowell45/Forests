@@ -98,7 +98,7 @@ class TreeNode:
         if not isinstance(new_payload, TreeNode):
             self._payload = new_payload
         else:
-            raise ValueError("payload must not be of type TreeNode!")
+            raise TypeError("payload must not be of type TreeNode!")
 
     @property
     def children(self) -> list:
@@ -129,7 +129,7 @@ class TreeNode:
         elif new_children is None:
             self._children = list()
         else:
-            raise ValueError("Children passed could not be correctly parsed!")
+            raise TypeError("Children passed could not be correctly parsed!")
 
     @property
     def parent(self) -> "TreeNode":
@@ -179,7 +179,7 @@ class TreeNode:
         if isinstance(new_child, TreeNode):
             self._children.append(new_child)
         else:
-            raise ValueError(
+            raise TypeError(
                 "Child must be of type 'TreeNode'! Currently of type: '%s'",
                 type(new_child),
             )
@@ -214,8 +214,3 @@ class TreeNode:
         return "<TreeNode ID: {}, Payload: {}, Parent: {}, Child: {}>".format(
             self.id, self.payload, self.parent, self.children
         )
-
-
-class Tree:
-    def __init__(self, branches):
-        self._branches = branches
