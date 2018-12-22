@@ -131,24 +131,6 @@ class TreeNode:
         else:
             raise ValueError("Children passed could not be correctly parsed!")
 
-    def add_child(self, new_child: "TreeNode") -> None:
-        """Use this function to add another child to the list of children.
-
-        This function is used for appending another child to the list of children for
-        the current 'TreeNode' instance.
-
-        :param new_child: the new 'TreeNode' to be added to the current
-                          instance as a child.
-        :type new_child: TreeNode
-        """
-        if isinstance(new_child, TreeNode):
-            self._children.add(new_child)
-        else:
-            raise ValueError(
-                "Child must be of type 'TreeNode'! Currently of type: '%s'",
-                type(new_child),
-            )
-
     @property
     def parent(self) -> "TreeNode":
         """Use this function as a getter for the '_parent' attribute.
@@ -182,6 +164,24 @@ class TreeNode:
                 "New Parent Must be of type 'TreeNode', not '{}'!".format(
                     type(new_parent)
                 )
+            )
+
+    def add_child(self, new_child: "TreeNode") -> None:
+        """Use this function to add another child to the list of children.
+
+        This function is used for appending another child to the list of children for
+        the current 'TreeNode' instance.
+
+        :param new_child: the new 'TreeNode' to be added to the current
+                          instance as a child.
+        :type new_child: TreeNode
+        """
+        if isinstance(new_child, TreeNode):
+            self._children.add(new_child)
+        else:
+            raise ValueError(
+                "Child must be of type 'TreeNode'! Currently of type: '%s'",
+                type(new_child),
             )
 
     def __repr__(self) -> str:
