@@ -334,4 +334,28 @@ class TestTreeNodeMethods:
 
 
 class TestTreeNodeErrors:
-    pass
+    """Use this class to test the 'TreeNode' class to test the errors made.
+
+    This function is used for testing the errors for the 'TreeNode' class. This
+    tests to make sure the errors return the correct values and types.
+    """
+
+    def test_set_id_raises_error(self, tree_node_instance):
+        with pytest.raises(TypeError):
+            tree_node_instance.id = "hello world"
+
+    def test_set_payload_raises_error(self, tree_node_instance):
+        with pytest.raises(TypeError):
+            tree_node_instance.payload = TreeNode(1, 1, None, None)
+
+    def test_set_children_raises_error(self, tree_node_instance):
+        with pytest.raises(TypeError):
+            tree_node_instance.children = TreeNode(1, 1, None, None)
+
+    def test_set_parent_raises_error(self, tree_node_instance):
+        with pytest.raises(TypeError):
+            tree_node_instance.parent = "Not a TreeNode"
+
+    def test_add_child_raise_error(self, tree_node_instance):
+        with pytest.raises(TypeError):
+            tree_node_instance.add_child(1)
