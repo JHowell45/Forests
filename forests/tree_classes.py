@@ -174,7 +174,7 @@ class TreeNode:
         if isinstance(new_parent, TreeNode):
             self._parent = new_parent
         elif isinstance(new_parent, dict):
-            self._parent = TreeNode.from_dict(new_parent)
+            self._parent = TreeNode(**new_parent)
         elif new_parent is None:
             self._parent = None
         else:
