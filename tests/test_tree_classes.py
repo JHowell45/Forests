@@ -142,6 +142,12 @@ class TestTreeNodeGetterFunctions:
 
 
 class TestTreeNodeSetterFunctions:
+    """Use this class to test the 'TreeNode' class to test the setters made.
+
+    This function is used for testing the setters for the 'TreeNode' class. This
+    tests to make sure the setters return the correct values and types.
+    """
+
     test_node_id_options = [10, 2.0]
     test_payload_choices = [1, 1.0]
     test_payload_types = [type(payload) for payload in test_payload_choices]
@@ -290,15 +296,37 @@ class TestTreeNodeSetterFunctions:
 
 
 class TestTreeNodeMethods:
+    """Use this class to test the 'TreeNode' class to test the methods made.
+
+    This function is used for testing the methods for the 'TreeNode' class. This
+    tests to make sure the methods return the correct values and types.
+    """
+
     test_child = TreeNode(1, 1, None, None)
 
     def test_add_child_type(self, tree_node_instance):
+        """Use this function to test the 'add_child' function.
+
+        This function is used for testing the type for the 'add_child' function to
+        check that a 'TreeNode' has been successfully added to the list of children.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         tree_node_instance.add_child(self.test_child)
         assert isinstance(tree_node_instance.children, list)
         for child_node in tree_node_instance.children:
             assert isinstance(child_node, TreeNode)
 
     def test_add_child_value(self, tree_node_instance):
+        """Use this function to test the 'add_child' function.
+
+        This function is used for testing the value for the 'add_child' function to
+        check that a 'TreeNode' has been successfully added to the list of children.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
         tree_node_instance.add_child(self.test_child)
         assert isinstance(tree_node_instance.children, list)
         for child_node in tree_node_instance.children:
