@@ -117,6 +117,16 @@ class TestTreeNodeSetterFunctions:
     test_payload_choices = [1, 1.0]
     test_payload_types = [type(payload) for payload in test_payload_choices]
     test_children_options = [set(), {}, None]
+    test_parent_options = [
+        None,
+        TreeNode(1, 1, None, None),
+        {"node_id": 1, "payload": 1, "children": None, "parent": None},
+    ]
+    test_parent_expected = [
+        None,
+        TreeNode(1, 1, None, None),
+        TreeNode(1, 1, None, None),
+    ]
 
     @pytest.mark.parametrize("node_id", test_node_id_options)
     def test_id_type(self, node_id, tree_node_instance):
@@ -159,7 +169,7 @@ class TestTreeNodeSetterFunctions:
 
         :param payload: the test payload to use.
         :type payload: any type.
-        :param expected: the type for the
+        :param expected: the type for the payload.
         :type expected: the types for payload.
         :param tree_node_instance: the test 'TreeNode' instance.
         :type tree_node_instance: TreeNode
@@ -211,6 +221,43 @@ class TestTreeNodeSetterFunctions:
         """
         tree_node_instance.children = children
         assert getattr(tree_node_instance, "children") == set()
+
+    @pytest.mark.parametrize("parent", test_parent_options)
+    def test_parent_type(self, parent, tree_node_instance):
+        """Use this function to test the type of the parent for 'TreeNode'.
+
+        This function is used for testing the type for the parent value for the test
+        'TreeNode' instance.
+
+        :param parent: the test parent to be added to the test TreeNode instance.
+        :type parent: None/TreeNode/dict
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
+        tree_node_instance.parent = parent
+        assert (
+            isinstance(getattr(tree_node_instance, "parent"), TreeNode)
+            or getattr(tree_node_instance, "parent") is None
+        )
+
+    @pytest.mark.parametrize(
+        "parent,expected", zip(test_parent_options, test_parent_expected)
+    )
+    def test_parent_value(self, parent, expected, tree_node_instance):
+        """Use this function to test the value of the parent for 'TreeNode'.
+
+        This function is used for testing the value for the parent value for the test
+        'TreeNode' instance.
+
+        :param parent: the test parent to be added to the test TreeNode instance.
+        :type parent: None/TreeNode/dict
+        :param expected: the expected parent value for the 'TreeNode' test instance.
+        :type expected: None/TreeNode.
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
+        tree_node_instance.parent = parent
+        assert getattr(tree_node_instance, "parent") == expected
 
 
 class TestTreeNodeMethods:
