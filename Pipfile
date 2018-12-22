@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+"pep8" = "*"
+"autopep8" = "*"
+"flake8" = "*"
+mypy = "*"
+pylint = "*"
+isort = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-isort = "*"
+pytest-black = "*"
+pytest-html = "*"
+pytest-coverage = "*"
+tox = "*"
+black = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
