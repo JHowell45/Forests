@@ -1,3 +1,6 @@
+from forests.tree_classes import TreeNode
+
+
 class TestTreeNodeGetterFunctions:
     """Use this class to test the 'TreeNode' class to test the getters made.
 
@@ -17,7 +20,17 @@ class TestTreeNodeGetterFunctions:
         assert isinstance(getattr(tree_node_instance, "id"), int)
 
     def test_id_value(self, tree_node_instance, tree_node_instance_data):
-        assert getattr(tree_node_instance, "id") == tree_node_instance_data["id"]
+        """Use this function to test the value of the ID for the 'TreeNode' instance.
+
+        This function is used for testing the value for the ID value for the test
+        'TreeNode' instance.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        :param tree_node_instance_data: data used for generating
+        :type tree_node_instance_data: dict
+        """
+        assert getattr(tree_node_instance, "id") == tree_node_instance_data["node_id"]
 
     def test_payload_type(self, tree_node_instance):
         """Use this function to test the type of the payload for 'TreeNode'.
@@ -28,9 +41,19 @@ class TestTreeNodeGetterFunctions:
         :param tree_node_instance: the test 'TreeNode' instance.
         :type tree_node_instance: TreeNode
         """
-        assert isinstance(getattr(tree_node_instance, "payload"), int)
+        assert isinstance(getattr(tree_node_instance, "payload"), (int, float, str))
 
     def test_payload_value(self, tree_node_instance, tree_node_instance_data):
+        """Use this function to test the value of the payload.
+
+        This function is used for testing the value for payload for the test
+        'TreeNode' instance.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        :param tree_node_instance_data: data used for generating
+        :type tree_node_instance_data: dict
+        """
         assert (
             getattr(tree_node_instance, "payload") == tree_node_instance_data["payload"]
         )
@@ -44,13 +67,18 @@ class TestTreeNodeGetterFunctions:
         :param tree_node_instance: the test 'TreeNode' instance.
         :type tree_node_instance: TreeNode
         """
-        assert isinstance(getattr(tree_node_instance, "children"), int)
+        assert isinstance(getattr(tree_node_instance, "children"), set)
 
-    def test_children_value(self, tree_node_instance, tree_node_instance_data):
-        assert (
-            getattr(tree_node_instance, "children")
-            == tree_node_instance_data["children"]
-        )
+    def test_children_value(self, tree_node_instance):
+        """Use this function to test the value of the children for 'TreeNode'.
+
+        This function is used for testing the value for the children value for the test
+        'TreeNode' instance.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        """
+        assert getattr(tree_node_instance, "children") == set()
 
     def test_parent_type(self, tree_node_instance):
         """Use this function to test the type of the parent for 'TreeNode'.
@@ -61,9 +89,22 @@ class TestTreeNodeGetterFunctions:
         :param tree_node_instance: the test 'TreeNode' instance.
         :type tree_node_instance: TreeNode
         """
-        assert isinstance(getattr(tree_node_instance, "parent"), int)
+        assert (
+            isinstance(getattr(tree_node_instance, "parent"), TreeNode)
+            or getattr(tree_node_instance, "parent") is None
+        )
 
     def test_parent_value(self, tree_node_instance, tree_node_instance_data):
+        """Use this function to test the value of the parent for 'TreeNode'.
+
+        This function is used for testing the value for the parent value for the test
+        'TreeNode' instance.
+
+        :param tree_node_instance: the test 'TreeNode' instance.
+        :type tree_node_instance: TreeNode
+        :param tree_node_instance_data: data used for generating
+        :type tree_node_instance_data: dict
+        """
         assert (
             getattr(tree_node_instance, "parent") == tree_node_instance_data["parent"]
         )
