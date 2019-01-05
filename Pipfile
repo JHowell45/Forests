@@ -20,6 +20,7 @@ pytest-html = "*"
 pytest-coverage = "*"
 tox = "*"
 black = "*"
+codecov = "*"
 
 [pipenv]
 allow_prereleases = true
