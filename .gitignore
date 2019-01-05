@@ -1,0 +1,20 @@
+# Ignore egg files for packaged library:
+forests.egg-info
+
+# Ignore IDE config/setting files and directories:
+.vscode
+.idea
+
+# Removing cache files:
+.mypy_cache
+__pycache__
+
+# Ignore Pipenv lock file:
+Pipfile.lock
+
+# Ignore testing cache files:
+.tox
+.coverage
+
+# Ignore docs:
+docs
