@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="forests",
-    version="0.1.0",
+    version="0.0.1",
     url="https://github.com/JHowell45/Forests",
     author="Jacob Howell",
     author_email="email@gmail.com",
