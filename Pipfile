@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+twine = "*"
 
 [dev-packages]
 "pep8" = "*"
@@ -21,6 +22,8 @@ pytest-coverage = "*"
 tox = "*"
 black = "*"
 codecov = "*"
+forests = {editable = true,path = "."}
+ptpython = "*"
 
 [pipenv]
 allow_prereleases = true
