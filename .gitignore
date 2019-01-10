@@ -1,5 +1,5 @@
 # Ignore egg files for packaged library:
-forests.egg-info
+woodland.egg-info
 build
 dist
 
