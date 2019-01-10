@@ -26,13 +26,9 @@ class TreeNode:
         using the data provided.
 
         :param node_id: the ID value for the current 'TreeNode' instance.
-        :type node_id: int
         :param payload: the data carried by the 'TreeNode' instance.
-        :type payload:
         :param children: a children instance of another 'TreeNode'.
-        :type children: TreeNode
         :param parent: a parent instance of another 'TreeNode'.
-        :type parent: TreeNode
         """
         self.id = node_id
         self.payload = payload
@@ -47,7 +43,6 @@ class TreeNode:
         instance.
 
         :return: the ID value for the 'TreeNode' instance.
-        :rtype: int
         """
         return self._id
 
@@ -59,7 +54,6 @@ class TreeNode:
         'TreeNode' instance.
 
         :param new_id: the new ID value.
-        :type new_id: int
         """
         if isinstance(new_id, int):
             self._id = new_id
@@ -81,7 +75,6 @@ class TreeNode:
         allow for conditions to be applied to the attribute.
 
         :return: the value stored in the '_payload' variable.
-        :rtype:
         """
         return self._payload
 
@@ -93,7 +86,6 @@ class TreeNode:
         'TreeNode' instance.
 
         :param new_payload: the new payload for the current instance.
-        :type new_payload:
         """
         if not isinstance(new_payload, TreeNode):
             self._payload = new_payload
@@ -108,7 +100,6 @@ class TreeNode:
         allow for conditions to be applied to the attribute.
 
         :return: the value stored in the '_children' variable.
-        :rtype: list
         """
         return self._children
 
@@ -120,7 +111,6 @@ class TreeNode:
         'TreeNode' instance.
 
         :param new_children: the new children 'TreeNode' to assign.
-        :type new_children: list
         """
         if isinstance(new_children, list):
             self._children = new_children
@@ -139,7 +129,6 @@ class TreeNode:
         allow for conditions to be applied to the attribute.
 
         :return: the value stored in the '_parent' variable.
-        :rtype: TreeNode
         """
         return self._parent
 
@@ -151,7 +140,6 @@ class TreeNode:
         TreeNode instance.
 
         :param new_parent: the new parent 'TreeNode' to assign.
-        :type new_parent: TreeNode
         """
         if isinstance(new_parent, TreeNode):
             self._parent = new_parent
@@ -172,9 +160,8 @@ class TreeNode:
         This function is used for appending another child to the list of children for
         the current 'TreeNode' instance.
 
-        :param new_child: the new 'TreeNode' to be added to the current
-                          instance as a child.
-        :type new_child: TreeNode
+        :param new_child: the new 'TreeNode' to be added to the current instance as a
+                          child.
         """
         if isinstance(new_child, TreeNode):
             self._children.append(new_child)
@@ -191,9 +178,7 @@ class TreeNode:
         current 'TreeNode' instance against another to check they are the same.
 
         :param comparison: the other 'TreeNode' instance to compare.
-        :type comparison: TreeNode
         :return: whether the current instance is equal to the comparison instance.
-        :rtype: bool
         """
         return (
             self.id == comparison.id
@@ -209,7 +194,6 @@ class TreeNode:
         instance.
 
         :return: a string representation of the current instance.
-        :rtype: str
         """
         return "<TreeNode ID: {}, Payload: {}, Parent: {}, Child: {}>".format(
             self.id, self.payload, self.parent, self.children
