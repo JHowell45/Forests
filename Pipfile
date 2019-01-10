@@ -22,7 +22,6 @@ pytest-coverage = "*"
 tox = "*"
 black = "*"
 codecov = "*"
-forests = {editable = true,path = "."}
 ptpython = "*"
 
 [pipenv]
