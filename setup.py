@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name="forests",
+    name="woodland",
     version="0.0.1",
     url="https://github.com/JHowell45/Forests",
     author="Jacob Howell",
     author_email="email@gmail.com",
     description="Pre-made Tree data structure.",
     long_description=open("README.md").read(),
-    packages=["forests"],
+    packages=["woodland"],
     install_requires=[],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",

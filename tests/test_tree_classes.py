@@ -1,6 +1,6 @@
 import pytest
 
-from forests.tree_classes import TreeNode
+from woodland.tree_classes import TreeNode
 
 
 class TestTreeNodeGetterFunctions:

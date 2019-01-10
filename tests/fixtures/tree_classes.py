@@ -1,6 +1,6 @@
 import pytest
 
-from forests.tree_classes import TreeNode
+from woodland.tree_classes import TreeNode
 
 test_data = [1, 1.0, "hello world"]
 test_data_ids = [str(type(data)) for data in test_data]
