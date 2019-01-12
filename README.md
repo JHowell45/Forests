@@ -13,6 +13,3 @@ You can install from pip:
 ```bash
 pip install woodland
 ```
-
-## Usage:
-To use this you can create a TreeNode using
