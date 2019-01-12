@@ -1,9 +1,9 @@
 """This file contains the classes for creating Trees.
 
-This file contains the classes for creating Trees along with their functions
-for retrieving attributes and generating instances.
+This file contains the classes for creating Trees along with their functions for
+retrieving attributes and generating instances.
 """
-from typing import Any
+from typing import Any, Union, List
 
 
 class TreeNode:
@@ -17,7 +17,7 @@ class TreeNode:
         self,
         node_id: int = None,
         payload: Any = None,
-        children: list = None,
+        children: List["TreeNode"] = None,
         parent: "TreeNode" = None,
     ) -> None:
         """Use this function to initialise an instance of the TreeNode class.
@@ -93,7 +93,7 @@ class TreeNode:
             raise TypeError("payload must not be of type TreeNode!")
 
     @property
-    def children(self) -> list:
+    def children(self) -> List["TreeNode"]:
         """Use this function as a getter for the '_children' attribute.
 
         This function is used as a getter function for the '_children' attribute to
@@ -104,7 +104,7 @@ class TreeNode:
         return self._children
 
     @children.setter
-    def children(self, new_children: list) -> None:
+    def children(self, new_children: List["TreeNode"]) -> None:
         """Use this function to assign a children to the current instance.
 
         This function is used for setting a new children 'TreeNode' to the  current
@@ -133,7 +133,7 @@ class TreeNode:
         return self._parent
 
     @parent.setter
-    def parent(self, new_parent: "TreeNode") -> None:
+    def parent(self, new_parent: Union["TreeNode", dict]) -> None:
         """Use this function to assign a parent to the current instance.
 
         This function is used for setting a new parent 'TreeNode' to the current
