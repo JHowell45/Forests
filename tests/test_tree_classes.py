@@ -332,6 +332,12 @@ class TestTreeNodeMethods:
         for child_node in tree_node_instance.children:
             assert child_node == self.test_child
 
+    def test_get_root_node_type(self, tree_node_instance):
+        pass
+
+    def test_get_root_node_value(self, tree_node_instance):
+        pass
+
 
 class TestTreeNodeErrors:
     """Use this class to test the 'TreeNode' class to test the errors made.
