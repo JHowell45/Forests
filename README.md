@@ -1,4 +1,4 @@
-# Forests
+# Woodland
 ### Helping you see the forest from the trees.
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
@@ -6,3 +6,13 @@
 [![codecov](https://codecov.io/gh/JHowell45/Forests/branch/master/graph/badge.svg)](https://codecov.io/gh/JHowell45/Forests)
 
 Python data types for tree data structures.
+
+
+## Installing:
+You can install from pip:
+```bash
+pip install woodland
+```
+
+## Usage:
+To use this you can create a TreeNode using
