@@ -3,7 +3,7 @@
 This file contains the classes for creating Trees along with their functions for
 retrieving attributes and generating instances.
 """
-from typing import Any, Union, List
+from typing import Any, List, Union
 
 
 class TreeNode:
@@ -170,6 +170,25 @@ class TreeNode:
                 "Child must be of type 'TreeNode'! Currently of type: '%s'",
                 type(new_child),
             )
+
+    def get_root_node(self) -> "TreeNode":
+        """Use this function to return the root node of the 'TreeNode' structure.
+
+        This function is used for returning the root node for the current TreeNode
+        tree. It returns the current node if there is no parent node.
+
+        :return: the root 'TreeNode'.
+        """
+        if self.parent is None:
+            return self
+        else:
+            current = self
+            parent = current.parent
+            while self.parent is not None:
+                current = self.parent
+                parent = current.parent
+            else:
+                return parent
 
     def __eq__(self, comparison: "TreeNode") -> bool:
         """Use this function to compare the current instance against another.
