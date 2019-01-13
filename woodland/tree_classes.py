@@ -3,7 +3,7 @@
 This file contains the classes for creating Trees along with their functions for
 retrieving attributes and generating instances.
 """
-from typing import Any, Union, List
+from typing import Any, Dict, List, Optional, Union
 
 
 class TreeNode:
@@ -15,10 +15,10 @@ class TreeNode:
 
     def __init__(
         self,
-        node_id: int = None,
-        payload: Any = None,
-        children: List["TreeNode"] = None,
-        parent: "TreeNode" = None,
+        node_id: Optional[int] = None,
+        payload: Optional[Any] = None,
+        children: Optional[Dict[int, "TreeNode"]] = None,
+        parent: Optional["TreeNode"] = None,
     ) -> None:
         """Use this function to initialise an instance of the TreeNode class.
 
@@ -101,10 +101,10 @@ class TreeNode:
 
         :return: the value stored in the '_children' variable.
         """
-        return self._children
+        return list(self._children.values())
 
     @children.setter
-    def children(self, new_children: List["TreeNode"]) -> None:
+    def children(self, new_children: Dict[int, "TreeNode"]) -> None:
         """Use this function to assign a children to the current instance.
 
         This function is used for setting a new children 'TreeNode' to the  current
@@ -112,12 +112,10 @@ class TreeNode:
 
         :param new_children: the new children 'TreeNode' to assign.
         """
-        if isinstance(new_children, list):
+        if isinstance(new_children, dict):
             self._children = new_children
-        elif isinstance(new_children, dict):
-            self._children = [TreeNode(**child) for child in new_children]
         elif new_children is None:
-            self._children = list()
+            self._children = dict()
         else:
             raise TypeError("Children passed could not be correctly parsed!")
 
@@ -164,7 +162,7 @@ class TreeNode:
                           child.
         """
         if isinstance(new_child, TreeNode):
-            self._children.append(new_child)
+            self._children[getattr(new_child, "id")] = new_child
         else:
             raise TypeError(
                 "Child must be of type 'TreeNode'! Currently of type: '%s'",
