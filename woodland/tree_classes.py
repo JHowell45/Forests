@@ -9,8 +9,8 @@ from typing import Any, Dict, List, Optional, Union
 class Tree:
     """Use this class to create a Node for the tree structure.
 
-    This class is used for creating a 'Tree' Node instance for populating the
-    tree data structure with.
+    This class is used for creating a 'Tree' Node instance for populating the tree
+    data structure with.
     """
 
     def __init__(
@@ -22,8 +22,8 @@ class Tree:
     ) -> None:
         """Use this function to initialise an instance of the Tree class.
 
-        This function is used for initialising an instance of the 'Tree' class
-        using the data provided.
+        This function is used for initialising an instance of the 'Tree' class using
+        the data provided.
 
         :param node_id: the ID value for the current 'Tree' instance.
         :param payload: the data carried by the 'Tree' instance.
@@ -39,7 +39,7 @@ class Tree:
     def id(self) -> int:
         """Use this function to return the ID value for the current instance.
 
-        This function is used for returning the node ID for the current 'Tree'
+        This function is used for returning the node ID for the current 'Tree' class
         instance.
 
         :return: the ID value for the 'Tree' instance.
@@ -50,8 +50,8 @@ class Tree:
     def id(self, new_id: int) -> None:
         """Use this function to set a new ID value for the instance.
 
-        This function is used for setting a new node ID value for the current
-        'Tree' instance.
+        This function is used for setting a new node ID value for the current 'Tree'
+        instance.
 
         :param new_id: the new ID value.
         """
@@ -82,8 +82,8 @@ class Tree:
     def payload(self, new_payload: Any) -> None:
         """Use this function to set a new payload for the current  instance.
 
-        This function is used for updating the payload value for the current
-        'Tree' instance.
+        This function is used for updating the payload value for the current 'Tree'
+        instance.
 
         :param new_payload: the new payload for the current instance.
         """
@@ -93,7 +93,7 @@ class Tree:
             raise TypeError("payload must not be of type Tree!")
 
     @property
-    def children(self) -> List["Tree"]:
+    def children(self) -> Dict[int, "Tree"]:
         """Use this function as a getter for the '_children' attribute.
 
         This function is used as a getter function for the '_children' attribute to
@@ -101,7 +101,7 @@ class Tree:
 
         :return: the value stored in the '_children' variable.
         """
-        return list(self._children.values())
+        return self._children
 
     @children.setter
     def children(self, new_children: Dict[int, "Tree"]) -> None:
@@ -134,8 +134,8 @@ class Tree:
     def parent(self, new_parent: Union["Tree", dict]) -> None:
         """Use this function to assign a parent to the current instance.
 
-        This function is used for setting a new parent 'Tree' to the current
-        Tree instance.
+        This function is used for setting a new parent 'Tree' to the current Tree
+        instance.
 
         :param new_parent: the new parent 'Tree' to assign.
         """
@@ -156,8 +156,7 @@ class Tree:
         This function is used for appending another child to the list of children for
         the current 'Tree' instance.
 
-        :param new_child: the new 'Tree' to be added to the current instance as a
-                          child.
+        :param new_child: the new 'Tree' to be added to the current instance as a child.
         """
         if isinstance(new_child, Tree):
             self._children[getattr(new_child, "id")] = new_child
@@ -185,7 +184,7 @@ class Tree:
     def __repr__(self) -> str:
         """Use this function to create a representation of a 'Tree'.
 
-        This function is used for creating a string representation of a 'Tree'
+        This function is used for creating a string representation of a 'Tree' class
         instance.
 
         :return: a string representation of the current instance.

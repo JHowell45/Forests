@@ -69,7 +69,7 @@ class TestTreeGetterFunctions:
         :param tree_node_instance: the test 'Tree' instance.
         :type tree_node_instance: Tree
         """
-        assert isinstance(getattr(tree_node_instance, "children"), list)
+        assert isinstance(getattr(tree_node_instance, "children"), dict)
 
     def test_children_value(self, tree_node_instance):
         """Use this function to test the value of the children for 'Tree'.
@@ -80,7 +80,7 @@ class TestTreeGetterFunctions:
         :param tree_node_instance: the test 'Tree' instance.
         :type tree_node_instance: Tree
         """
-        assert getattr(tree_node_instance, "children") == list()
+        assert getattr(tree_node_instance, "children") == dict()
 
     def test_parent_type(self, tree_node_instance):
         """Use this function to test the type of the parent for 'Tree'.
@@ -151,7 +151,7 @@ class TestTreeSetterFunctions:
     test_node_id_options = [10, 2.0]
     test_payload_choices = [1, 1.0]
     test_payload_types = [type(payload) for payload in test_payload_choices]
-    test_children_options = [[], {}, None]
+    test_children_options = [{}, None]
     test_parent_options = [
         None,
         Tree(1, 1, None, None),
@@ -236,7 +236,7 @@ class TestTreeSetterFunctions:
         :type tree_node_instance: Tree
         """
         tree_node_instance.children = children
-        assert isinstance(getattr(tree_node_instance, "children"), list)
+        assert isinstance(getattr(tree_node_instance, "children"), dict)
 
     @pytest.mark.parametrize("children", test_children_options)
     def test_children_value(self, children, tree_node_instance):
@@ -251,7 +251,7 @@ class TestTreeSetterFunctions:
         :type tree_node_instance: Tree
         """
         tree_node_instance.children = children
-        assert getattr(tree_node_instance, "children") == list()
+        assert getattr(tree_node_instance, "children") == dict()
 
     @pytest.mark.parametrize("parent", test_parent_options)
     def test_parent_type(self, parent, tree_node_instance):
@@ -310,8 +310,9 @@ class TestTreeMethods:
         :type tree_node_instance: Tree
         """
         tree_node_instance.add_child(self.test_child)
-        assert isinstance(tree_node_instance.children, list)
-        for child_node in tree_node_instance.children:
+        assert isinstance(tree_node_instance.children, dict)
+        for child_id, child_node in tree_node_instance.children.items():
+            assert isinstance(child_id, int)
             assert isinstance(child_node, Tree)
 
     def test_add_child_value(self, tree_node_instance):
@@ -324,8 +325,9 @@ class TestTreeMethods:
         :type tree_node_instance: Tree
         """
         tree_node_instance.add_child(self.test_child)
-        assert isinstance(tree_node_instance.children, list)
-        for child_node in tree_node_instance.children:
+        assert isinstance(tree_node_instance.children, dict)
+        for child_id, child_node in tree_node_instance.children.items():
+            assert child_id == self.test_child.id
             assert child_node == self.test_child
 
 
