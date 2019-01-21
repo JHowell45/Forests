@@ -12,7 +12,7 @@ dist
 __pycache__
 
 # Ignore Pipenv lock file:
-Pipfile.lock
+# Pipfile.lock
 
 # Ignore testing cache files:
 .tox

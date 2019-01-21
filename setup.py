@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="woodland",
     version="0.0.1",
-    url="https://github.com/JHowell45/Forests",
+    url="https://github.com/JHowell45/Woodland",
     author="Jacob Howell",
     author_email="email@gmail.com",
     description="Pre-made Tree data structure.",

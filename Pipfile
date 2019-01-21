@@ -22,7 +22,6 @@ pytest-coverage = "*"
 tox = "*"
 black = "*"
 codecov = "*"
-ptpython = "*"
 
 [pipenv]
 allow_prereleases = true
