@@ -333,10 +333,10 @@ class TestTreeNodeMethods:
             assert child_node == self.test_child
 
     def test_get_root_node_type(self, tree_node_instance):
-        pass
+        assert isinstance(tree_node_instance.get_root_node(), TreeNode)
 
     def test_get_root_node_value(self, tree_node_instance):
-        pass
+        assert tree_node_instance.get_root_node() == tree_node_instance
 
 
 class TestTreeNodeErrors:
