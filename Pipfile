@@ -7,11 +7,7 @@ name = "pypi"
 twine = "*"
 
 [dev-packages]
-"pep8" = "*"
-"autopep8" = "*"
-"flake8" = "*"
 mypy = "*"
-pylint = "*"
 isort = "*"
 pytest = "*"
 pytest-cov = "*"
