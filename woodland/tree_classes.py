@@ -158,8 +158,7 @@ class TreeNode:
         This function is used for appending another child to the list of children for
         the current 'TreeNode' instance.
 
-        :param new_child: the new 'TreeNode' to be added to the current instance as a
-                          child.
+        :param new_child: the new node to be added to the current instance as a child.
         """
         if isinstance(new_child, TreeNode):
             self._children.append(new_child)
