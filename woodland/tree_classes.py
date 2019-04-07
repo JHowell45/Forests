@@ -62,9 +62,8 @@ class TreeNode:
             self._id = int(new_id)
         else:
             raise TypeError(
-                "New ID value for the TreeNode instance must be of type "
-                "int and not: '%s'",
-                type(new_id),
+                f"New ID value for the {self.__class__.__name__} instance must be of "
+                f"type int and not: 'type(new_id)'"
             )
 
     @property
@@ -90,7 +89,7 @@ class TreeNode:
         if not isinstance(new_payload, TreeNode):
             self._payload = new_payload
         else:
-            raise TypeError("payload must not be of type TreeNode!")
+            raise TypeError(f"Payload must not be of type {self.__class__.__name__}!")
 
     @property
     def children(self) -> List["TreeNode"]:
@@ -123,7 +122,7 @@ class TreeNode:
 
     @property
     def parent(self) -> "TreeNode":
-        """Use this function as a getter for the '_parent' attribute.
+        """Use this function as a getter for the 'parent' attribute.
 
         This function is used as a getter function for the '_parent' attribute to
         allow for conditions to be applied to the attribute.
@@ -149,9 +148,8 @@ class TreeNode:
             self._parent = None
         else:
             raise TypeError(
-                "New Parent Must be of type 'TreeNode', not '{}'!".format(
-                    type(new_parent)
-                )
+                f"New Parent Must be of type '{self.__class__.__name__}', not "
+                f"'{type(new_parent)}'!"
             )
 
     def add_child(self, new_child: "TreeNode") -> None:
@@ -214,6 +212,7 @@ class TreeNode:
 
         :return: a string representation of the current instance.
         """
-        return "<TreeNode ID: {}, Payload: {}, Parent: {}, Child: {}>".format(
-            self.id, self.payload, self.parent, self.children
+        return (
+            f"<{self.__class__.__name__} ID: {self.id}, Payload: {self.payload}, "
+            f"Parent: {self.parent}, Child: {self.children}>"
         )
