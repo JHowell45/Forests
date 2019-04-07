@@ -43,7 +43,9 @@ class TestTreeNodeGetterFunctions:
         :param tree_node_instance: the test 'TreeNode' instance.
         :type tree_node_instance: TreeNode
         """
-        assert isinstance(getattr(tree_node_instance, "payload"), (int, float, str))
+        assert isinstance(
+            getattr(tree_node_instance, "payload"), (int, float, str, dict)
+        )
 
     def test_payload_value(self, tree_node_instance, tree_node_instance_data):
         """Use this function to test the value of the payload.
