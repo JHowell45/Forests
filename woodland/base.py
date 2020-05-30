@@ -25,6 +25,16 @@ class Node:
         """
         return True if self.parent else False
 
+    def is_leaf(self) -> bool:
+        """Use this function to find out if this node is a leaf of the tree.
+
+        This function is used for checking if the current node is a leaf for the tree.
+        This means that it does not have any children.
+
+        :return: whether or not this node is a leaf of the tree.
+        """
+        return True if self.children else False
+
     def __repr__(self) -> str:
         return (
             f"<{self.__class__.__name__} Value: {self.value}, Children:"
