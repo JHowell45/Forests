@@ -1,194 +1,105 @@
-"""This file contains the classes for creating Trees.
-
-This file contains the classes for creating Trees along with their functions for
-retrieving attributes and generating instances.
 """
-from typing import Any, Dict, List, Optional, Union
+
+"""
+from itertools import zip_longest
+from typing import Tuple
+
+from dataclasses import dataclass, field
 
 
-class Tree:
-    """Use this class to create a Node for the tree structure.
+@dataclass
+class TreeNode:
+    id: int
+    children: dict = field(default_factory=dict)
 
-    This class is used for creating a 'Tree' Node instance for populating the tree
-    data structure with.
-    """
+    @classmethod
+    def load_from_dict(cls, data: dict) -> "TreeNode":
+        node_id = list(data.keys())[0]
+        children = tuple(list(data.values())[0].keys())
+        node = TreeNode(node_id, {})
+        node.add_children_ids(children)
+        for id, child in list(data.values())[0].items():
+            node.children[id] = TreeNode.load_from_dict({id: child})
+        return node
 
-    def __init__(
-        self,
-        node_id: Optional[int] = None,
-        payload: Optional[Any] = None,
-        children: Optional[Dict[int, "Tree"]] = None,
-        parent: Optional["Tree"] = None,
-    ) -> None:
-        """Use this function to initialise an instance of the Tree class.
+    def add_child(self, child: "TreeNode"):
+        self.children[child.id] = child
 
-        This function is used for initialising an instance of the 'Tree' class using
-        the data provided.
+    def add_child_by_id(self, child_id: int):
+        self.children[child_id] = TreeNode(child_id)
 
-        :param node_id: the ID value for the current 'Tree' instance.
-        :param payload: the data carried by the 'Tree' instance.
-        :param children: a children instance of another 'Tree'.
-        :param parent: a parent instance of another 'Tree'.
-        """
-        self.id = node_id
-        self.payload = payload
-        self.children = children
-        self.parent = parent
+    def add_children_ids(self, child_ids: Tuple[int]):
+        for child_id in child_ids:
+            self.add_child_by_id(child_id)
 
-    @property
-    def id(self) -> int:
-        """Use this function to return the ID value for the current instance.
+    def has_children(self) -> bool:
+        return bool(self.children)
 
-        This function is used for returning the node ID for the current 'Tree' class
-        instance.
+    def get_next_node(self, id: int) -> "TreeNode":
+        return self.children[id]
 
-        :return: the ID value for the 'Tree' instance.
-        """
-        return self._id
+    def get_node(self, id: int) -> "TreeNode":
+        print(f"{self.id}: {list(self.children.keys())} || ID: {id}")
+        try:
+            return self.get_next_node(id)
+        except KeyError:
+            for child in self.children.values():
+                try:
+                    return child.get_node(id)
+                except (KeyError, ValueError):
+                    pass
+        raise ValueError(f"Failed to find the node '{id}'")
 
-    @id.setter
-    def id(self, new_id: int) -> None:
-        """Use this function to set a new ID value for the instance.
+    def get_child_path(self, child_id: int) -> Tuple[int]:
+        path = [self.id]
+        if self.id == child_id:
+            return tuple(path)
+        try:
+            child = self.get_next_node(child_id)
+            path.append(child.id)
+            return tuple(path)
+        except KeyError:
+            pass
+        for child in self.children.values():
+            try:
+                path += list(child.get_child_path(child_id))
+            except ValueError:
+                pass
+        if path == [self.id]:
+            raise ValueError("Failed to find the specific child in the tree.")
+        return tuple(path)
 
-        This function is used for setting a new node ID value for the current 'Tree'
-        instance.
+    def get_child_distance(self, child_id: int) -> int:
+        return len(self.get_child_path(child_id))
 
-        :param new_id: the new ID value.
-        """
-        if isinstance(new_id, int):
-            self._id = new_id
-        elif isinstance(new_id, float):
-            print("WARNING: Converting float to integer!")
-            self._id = int(new_id)
+    def distance_between_nodes(self, first_node: int, second_node: int) -> int:
+        first_node_path = self.get_child_path(first_node)
+        second_node_path = self.get_child_path(second_node)
+        print(first_node_path)
+        print(second_node_path)
+        if first_node_path[0] == second_node_path[0]:
+            distance = 0
+            for first, second in zip_longest(first_node_path, second_node_path):
+                if first == second:
+                    pass
+                else:
+                    if first is None or second is None:
+                        distance += 1
+                    else:
+                        distance += 2
+            return distance
         else:
-            raise TypeError(
-                "New ID value for the Tree instance must be of type "
-                "int and not: '%s'",
-                type(new_id),
-            )
+            raise ValueError("Can't calculate the distance")
 
-    @property
-    def payload(self) -> Any:
-        """Use this function as a getter for the '_payload' attribute.
+    def save_as_dict(self) -> dict:
+        tree = {self.id: {}}
+        for id, child in self.children.items():
+            tree[self.id][id] = child.save_as_dict()[id]
+        return tree
 
-        This function is used as a getter function for the '_payload' attribute to
-        allow for conditions to be applied to the attribute.
-
-        :return: the value stored in the '_payload' variable.
-        """
-        return self._payload
-
-    @payload.setter
-    def payload(self, new_payload: Any) -> None:
-        """Use this function to set a new payload for the current  instance.
-
-        This function is used for updating the payload value for the current 'Tree'
-        instance.
-
-        :param new_payload: the new payload for the current instance.
-        """
-        if not isinstance(new_payload, Tree):
-            self._payload = new_payload
-        else:
-            raise TypeError("payload must not be of type Tree!")
-
-    @property
-    def children(self) -> Dict[int, "Tree"]:
-        """Use this function as a getter for the '_children' attribute.
-
-        This function is used as a getter function for the '_children' attribute to
-        allow for conditions to be applied to the attribute.
-
-        :return: the value stored in the '_children' variable.
-        """
-        return self._children
-
-    @children.setter
-    def children(self, new_children: Dict[int, "Tree"]) -> None:
-        """Use this function to assign a children to the current instance.
-
-        This function is used for setting a new children 'Tree' to the  current
-        'Tree' instance.
-
-        :param new_children: the new children 'Tree' to assign.
-        """
-        if isinstance(new_children, dict):
-            self._children = new_children
-        elif new_children is None:
-            self._children = dict()
-        else:
-            raise TypeError("Children passed could not be correctly parsed!")
-
-    @property
-    def parent(self) -> "Tree":
-        """Use this function as a getter for the '_parent' attribute.
-
-        This function is used as a getter function for the '_parent' attribute to
-        allow for conditions to be applied to the attribute.
-
-        :return: the value stored in the '_parent' variable.
-        """
-        return self._parent
-
-    @parent.setter
-    def parent(self, new_parent: Union["Tree", dict]) -> None:
-        """Use this function to assign a parent to the current instance.
-
-        This function is used for setting a new parent 'Tree' to the current Tree
-        instance.
-
-        :param new_parent: the new parent 'Tree' to assign.
-        """
-        if isinstance(new_parent, Tree):
-            self._parent = new_parent
-        elif isinstance(new_parent, dict):
-            self._parent = Tree(**new_parent)
-        elif new_parent is None:
-            self._parent = None
-        else:
-            raise TypeError(
-                "New Parent Must be of type 'Tree', not '{}'!".format(type(new_parent))
-            )
-
-    def add_child(self, new_child: "Tree") -> None:
-        """Use this function to add another child to the list of children.
-
-        This function is used for appending another child to the list of children for
-        the current 'Tree' instance.
-
-        :param new_child: the new 'Tree' to be added to the current instance as a child.
-        """
-        if isinstance(new_child, Tree):
-            self._children[getattr(new_child, "id")] = new_child
-        else:
-            raise TypeError(
-                "Child must be of type 'Tree'! Currently of type: '%s'", type(new_child)
-            )
-
-    def __eq__(self, comparison: "Tree") -> bool:
-        """Use this function to compare the current instance against another.
-
-        This function is used to override the magic function to correctly compare the
-        current 'Tree' instance against another to check they are the same.
-
-        :param comparison: the other 'Tree' instance to compare.
-        :return: whether the current instance is equal to the comparison instance.
-        """
-        return (
-            self.id == comparison.id
-            and self.payload == comparison.payload
-            and self.children == comparison.children
-            and self.parent == comparison.parent
-        )
-
-    def __repr__(self) -> str:
-        """Use this function to create a representation of a 'Tree'.
-
-        This function is used for creating a string representation of a 'Tree' class
-        instance.
-
-        :return: a string representation of the current instance.
-        """
-        return "<Tree ID: {}, Payload: {}, Parent: {}, Child: {}>".format(
-            self.id, self.payload, self.parent, self.children
-        )
+    def display_tree(self, gap=""):
+        print(f"{gap}|-- {self.id}")
+        for child in self.children.values():
+            new_gap = f"{gap}   "
+            child: TreeNode = child
+            child.display_tree(gap=new_gap)
