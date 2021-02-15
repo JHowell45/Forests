@@ -23,7 +23,6 @@ tox = "*"
 black = "*"
 codecov = "*"
 ptpython = "*"
-pytest-clarity = "*"
 
 [pipenv]
 allow_prereleases = true
